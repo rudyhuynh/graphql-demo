@@ -1,0 +1,19 @@
+
+  type Todo {
+    id: ID!,
+    text: String,
+    complete: Boolean
+  }
+
+  type User {
+    id: ID!,
+    totalCount: Int,
+    todos: [Todo]
+  }
+
+  type Query {
+    quoteOfTheDay(x: Int, y: Int): String
+    random: Float!
+    rollThreeDice: [Int],
+    user: User
+  }
