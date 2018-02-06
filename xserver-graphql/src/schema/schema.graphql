@@ -1,0 +1,68 @@
+type Cart {
+  id: String
+  products: [CartProduct]!
+  paymentMethodId: String
+  currentStep: Int
+  isSubmitted: Boolean
+}
+
+type CartProduct {
+  id: String
+  name: String
+  remain: Int
+  price: Float
+  quantity: Int
+}
+
+input ChangeCartProductQuantityInput {
+  userName: String!
+  productId: String!
+  quantity: Int!
+}
+
+input DiliveryInfoInput {
+  userName: String!
+  fullName: String
+  address: String
+  phone: String
+}
+
+type Mutation {
+  initProducts: Boolean
+  initPaymentMethods: Boolean
+  createUser(user: UserInput): User
+  changeCartProductQuantity(input: ChangeCartProductQuantityInput!): CartProduct
+  saveDiliveryInfo(input: DiliveryInfoInput!): User
+  submitCart(input: SubmitCartInput!): Cart
+}
+
+type PaymentMethod {
+  id: String
+  name: String
+}
+
+type Query {
+  user(userName: String!): User
+  paymentMethods: [PaymentMethod]
+}
+
+input SubmitCartInput {
+  userName: String!
+  paymentMethodId: String!
+}
+
+type User {
+  id: String
+  userName: String
+  fullName: String
+  address: String
+  phone: String
+  cart: Cart
+}
+
+input UserInput {
+  userName: String!
+  fullName: String
+  address: String
+  phone: String
+}
